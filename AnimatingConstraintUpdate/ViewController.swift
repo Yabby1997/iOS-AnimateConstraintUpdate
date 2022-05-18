@@ -66,6 +66,13 @@ class ViewController: UIViewController {
     }
     
     @objc private func switchDidToggled(_ sender: UISwitch) {
+        toggle.snp.updateConstraints { make in
+            make.centerX.equalToSuperview().offset(50)
+        }
+        
+        // If remove layoutIfNeeded on line 74,constraint update of toggle will be animated too.
+        self.view.layoutIfNeeded()
+        
         if sender.isOn {
             UIView.animate(
                 withDuration: 0.25,
